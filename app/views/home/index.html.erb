@@ -1,2 +1,33 @@
-<h1>Stocker</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!--<h1>Stocker</h1>-->
+<!--<p>Find me in app/views/home/index.html.erb</p>-->
+
+<%= form_tag root_path, :method => 'POST' do %>
+    <%= text_field_tag 'id', nil, placeholder: 'Enter Company Ticker Symbol', size: 50 %>
+    <%= submit_tag 'Lookup Stock Quote' %>
+<% end %>
+    
+    
+<!--<% stock = StockQuote::Stock.quote("goog") %>-->
+
+
+<br/><br/>
+
+<% if @stock %>
+
+    <strong>Company Name: </strong> <%= @stock.company_name %> - <%= @stock.symbol %> <br/>
+    <strong>Current Ask: </strong> <%= @stock.low %> <br/>
+    <strong>Price/Earnings Ratio: </strong> <%= @stock.pe_ratio %> <br/>
+    <strong>Market Cap: </strong> <%= @stock.market_cap %> <br/>
+    <strong>Stock Open: </strong> <%= @stock.open %> <br/>
+    <strong>Day's Range: </strong> <%= @stock.low %> - <%= @stock.high %> <br/>
+    <strong>52 Week High: </strong> <%= @stock.week52_high %> <br/>
+    <strong>52 Week Low: </strong> <%= @stock.week52_low %> <br/>
+    
+<% elsif @nothing %>
+    <%= @nothing %>
+<% end %>
+    
+
+<% if @error %>
+    <%= @error %>
+<% end %>
